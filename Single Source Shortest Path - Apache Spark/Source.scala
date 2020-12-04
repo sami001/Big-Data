@@ -1,3 +1,20 @@
+/********************************************* PSEUDOCODE **********************************************************
+The input directed graph is a dataset of edges, where an edge from the node i to the node j is represented in the input text file as: i,d,j
+where d is the distance from node i to node j. (Numbers i,j, and d are long integers.) 
+Let distance[i] be the shortest distance from the node with id=0 to the node with id=i. 
+The pseudo-code to calculate distance[i] is as follows:
+distance[0] = 0
+for each node i <> 0:
+    distance[i] = Long.MAX_VALUE
+repeat 4 times:
+    for each edge (i,d,j):
+        if distance[j] > distance[i]+d
+           distance[j] = distance[i]+d
+Your code that calculates the new distances from the old must be repeated 4 times only.
+Hint: You may want to group edges by their destination as a triple (j,distance[j],{(i1,d1),(i2,d2),...}), which are derived from the edges (i1,d1,j),(i2,d2,j),...
+, where distance[j] is initially Long.MAX_VALUE.
+*/
+
 package edu.uta.cse6331
 
 import org.apache.spark.SparkContext
