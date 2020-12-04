@@ -7,11 +7,12 @@ class Vertex extends Writable {
   ...
 }
 Vertex must have two constructors: Vertex(tag,group,VID,adjacent) and Vertex(tag,group).
-First Map-Reduce job:
 
+First Map-Reduce job:
 map ( key, line ) =
   parse the line to get the vertex VID and the adjacent vector
   emit( VID, new Vertex(0,VID,VID,adjacent) )
+
 Second Map-Reduce job:
 map ( key, vertex ) =
   emit( vertex.VID, vertex )   // pass the graph topology
@@ -25,6 +26,7 @@ reduce ( vid, values ) =
         then adj = v.adjacent.clone()     // found the vertex with vid
      m = min(m,v.group)
   emit( m, new Vertex(0,m,vid,adj) )      // new group #
+
 Final Map-Reduce job:
 map ( group, value ) =
    emit(group,1)
